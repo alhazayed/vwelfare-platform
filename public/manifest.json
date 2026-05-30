@@ -1,0 +1,21 @@
+{
+  "name": "Vwelfare — Mental Health",
+  "short_name": "Vwelfare",
+  "description": "Your secure mental health companion",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#12273C",
+  "theme_color": "#1D6296",
+  "orientation": "portrait",
+  "categories": ["health", "medical"],
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    { "src": "/icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "تسجيل المزاج", "short_name": "مزاج", "url": "/mood", "icons": [{ "src": "/icons/icon-192.svg", "sizes": "192x192" }] },
+    { "name": "وافي AI", "short_name": "وافي", "url": "/chat", "icons": [{ "src": "/icons/icon-192.svg", "sizes": "192x192" }] }
+  ]
+}

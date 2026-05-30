@@ -1,0 +1,448 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lapis:   #1D6296;
+  --orange:  #F3650A;
+  --yankees: #12273C;
+}
+
+[dir="rtl"] { direction: rtl; }
+[dir="ltr"] { direction: ltr; }
+
+/* ── Animations ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(2deg); }
+  66%       { transform: translateY(-6px) rotate(-1deg); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: .4; }
+  100% { transform: scale(1.6);  opacity: 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(40px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utility classes ────────────────────────────────── */
+.anim-fade-up  { animation: fadeUp  .55s ease both; }
+.anim-fade-in  { animation: fadeIn  .4s  ease both; }
+.anim-float    { animation: float   5s ease-in-out infinite; }
+.anim-float-slow { animation: floatSlow 7s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 20s linear infinite; }
+
+.delay-100 { animation-delay: .1s; }
+.delay-200 { animation-delay: .2s; }
+.delay-300 { animation-delay: .3s; }
+.delay-400 { animation-delay: .4s; }
+.delay-500 { animation-delay: .5s; }
+
+/* ── Card hover lift ────────────────────────────────── */
+.card-lift {
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+
+/* ── Typography ─────────────────────────────────────── */
+.font-serif-ar { font-family: 'Georgia', 'Times New Roman', serif; }
+.text-balance  { text-wrap: balance; }
+.prose-ar { font-family: 'Georgia', 'Amiri', serif; line-height: 2; font-size: 15px; }
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+
+/* ── Gradient text ──────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #4aa3dc 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ─────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+/* ── Category pill active ───────────────────────────── */
+.cat-pill {
+  padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 500;
+  cursor: pointer; border: 1px solid #e5e7eb; background: #fff; color: #6b7280;
+  transition: all .15s; white-space: nowrap;
+}
+.cat-pill:hover  { border-color: #1D6296; color: #1D6296; }
+.cat-pill.active { background: #1D6296; border-color: #1D6296; color: #fff; font-weight: 600; }
+
+/* ── Input focus ────────────────────────────────────── */
+.field {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1.5px solid #e5e7eb; background: #f9fafb;
+  font-size: 14px; font-family: inherit; outline: none;
+  transition: border-color .15s, box-shadow .15s; color: #111827;
+}
+.field:focus { border-color: #1D6296; box-shadow: 0 0 0 3px rgba(29,98,150,.12); background: #fff; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+
+/* ── Toggle switch (journal share) ─────────────────────── */
+.tog {
+  position: relative; width: 38px; height: 22px;
+  border-radius: 11px; cursor: pointer;
+  transition: background .2s; flex-shrink: 0;
+}
+.tog-t {
+  position: absolute; top: 3px; width: 16px; height: 16px;
+  border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  transition: left .2s;
+}
+
+/* ── Screen page ────────────────────────────────────────── */
+@keyframes scaleIn {
+  from { transform: scale(.92); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.scale-in { animation: scaleIn .3s ease both; }
+
+/* ── Mobile-only ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hide-mobile { display: none !important; }
+  .mobile-brand { display: block !important; }
+}
+
+/* ── Mesh gradient hero ─────────────────────────────── */
+@keyframes mesh1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(60px,-40px) scale(1.1)} 66%{transform:translate(-30px,50px) scale(.95)} }
+@keyframes mesh2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-50px,60px) scale(1.05)} 66%{transform:translate(40px,-30px) scale(.9)} }
+@keyframes mesh3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,30px) scale(1.15)} }
+
+/* ── Breathe animations ─────────────────────────────── */
+@keyframes breathe-expand  { from{transform:scale(.55);opacity:.5} to{transform:scale(1);opacity:1} }
+@keyframes breathe-hold    { from{transform:scale(1)} to{transform:scale(1)} }
+@keyframes breathe-contract{ from{transform:scale(1);opacity:1} to{transform:scale(.55);opacity:.5} }
+@keyframes ripple          { 0%{transform:scale(1);opacity:.4} 100%{transform:scale(2.2);opacity:0} }
+
+/* ── Scroll reveal ──────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
+.reveal.in { opacity:1; transform:none; }
+
+/* ── Score arc fill ─────────────────────────────────── */
+@keyframes arcFill { from{stroke-dashoffset:var(--arc-max)} to{stroke-dashoffset:var(--arc-offset)} }
+
+/* ── Achievement unlock ─────────────────────────────── */
+@keyframes unlock { 0%{transform:scale(0) rotate(-15deg);opacity:0} 60%{transform:scale(1.15) rotate(3deg)} 100%{transform:scale(1) rotate(0);opacity:1} }
+
+/* ── SOS pulse ──────────────────────────────────────── */
+@keyframes sos-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)} 50%{box-shadow:0 0 0 12px rgba(220,38,38,0)} }
+.sos-btn { animation: sos-pulse 2.5s ease-in-out infinite; }
+
+/* ── Gradient text lapis ────────────────────────────── */
+.gradient-lapis { background:linear-gradient(135deg,#4aa3dc,#1D6296); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── Desktop responsive fixes ────────────────────────── */
+@media (min-width: 900px) {
+  /* Patient pages: expand headers to fill desktop width */
+  .dashboard-header { border-radius: 0 !important; }
+  /* Reduce top padding (no phone status bar on desktop) */
+  .page-top-pad { padding-top: 28px !important; }
+  /* Two-column grid on wide screens */
+  .desktop-grid { display: grid !important; grid-template-columns: 1fr 380px; gap: 24px; align-items: start; }
+  .desktop-grid-3 { display: grid !important; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  /* Side-by-side quick links on desktop */
+  .quick-grid { grid-template-columns: repeat(4,1fr) !important; }
+}
+
+/* ── Print-safe card shadows ─────────────────────────── */
+.card { box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+
+/* ── Shimmer skeleton ────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #eaecef 25%, #f5f6f7 50%, #eaecef 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 10px;
+}
+.skeleton-dark {
+  background: linear-gradient(90deg, rgba(255,255,255,.06) 25%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 10px;
+}
+
+/* ── Custom range slider (mood) ─────────────────────── */
+input[type=range].mood-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 7px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: background .15s;
+  width: 100%;
+}
+input[type=range].mood-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1D6296;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  cursor: pointer;
+  transition: transform .12s ease, border-color .15s;
+}
+input[type=range].mood-slider:active::-webkit-slider-thumb {
+  transform: scale(1.22);
+}
+input[type=range].mood-slider::-moz-range-thumb {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1D6296;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+
+/* ── Tap / press feedback ──────────────────────────── */
+.tap-scale { transition: transform .12s ease; }
+.tap-scale:active { transform: scale(.95); }
+
+/* ── Success bounce animation ──────────────────────── */
+@keyframes successBounce {
+  0%   { transform: scale(0) rotate(-12deg); opacity: 0; }
+  55%  { transform: scale(1.18) rotate(4deg); opacity: 1; }
+  75%  { transform: scale(.93) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg);    opacity: 1; }
+}
+.success-bounce { animation: successBounce .55s cubic-bezier(.34,1.56,.64,1) both; }
+
+/* ── Stagger helpers ───────────────────────────────── */
+.delay-600 { animation-delay: .6s; }
+.delay-700 { animation-delay: .7s; }
+.delay-800 { animation-delay: .8s; }
+
+/* ── Section label ─────────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700; color: #9ca3af;
+  letter-spacing: .07em; text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+
+/* ── Value pill ────────────────────────────────────── */
+.value-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; height: 26px; border-radius: 100px;
+  font-size: 13px; font-weight: 800; padding: 0 8px;
+  transition: background .2s, color .2s;
+}
+
+/* ── Focus visible (accessibility) ──────────────────── */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #1D6296;
+  outline-offset: 2px;
+}
+
+/* ── Smooth page transitions ─────────────────────────── */
+main { animation: fadeIn .2s ease both; }
+
+/* ── Landing page mobile nav ─────────────────────────── */
+@media (max-width: 768px) {
+  .landing-nav-links { display: none !important; }
+  .landing-hero-grid { grid-template-columns: 1fr !important; }
+  .landing-hero-orbit { display: none !important; }
+  .landing-features-grid { grid-template-columns: 1fr !important; }
+  .landing-for-whom { grid-template-columns: 1fr !important; }
+  .landing-journey { grid-template-columns: repeat(2,1fr) !important; }
+  .landing-stats { grid-template-columns: repeat(2,1fr) !important; }
+  .landing-library { grid-template-columns: 1fr !important; }
+}
+
+/* ── Responsive layout ──────────────────────────────── */
+
+/* Landing page hero: two columns → one column on mobile */
+@media (max-width: 900px) {
+  .hero-grid        { grid-template-columns: 1fr !important; }
+  .orbit-hide       { display: none !important; }
+  .who-grid         { grid-template-columns: 1fr !important; }
+  .journey-grid     { grid-template-columns: 1fr 1fr !important; }
+  .features-grid    { grid-template-columns: 1fr 1fr !important; }
+  .library-grid     { grid-template-columns: 1fr !important; }
+  .stats-grid       { grid-template-columns: repeat(2,1fr) !important; }
+  .nav-links-hide   { display: none !important; }
+}
+@media (max-width: 600px) {
+  .journey-grid     { grid-template-columns: 1fr 1fr !important; }
+  .features-grid    { grid-template-columns: 1fr !important; }
+  .stats-grid       { grid-template-columns: repeat(2,1fr) !important; }
+}
+
+/* Patient app: centered phone-style on desktop */
+.patient-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f2fb 0%, #f0f4f8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.patient-frame {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: #f4f6f9;
+  position: relative;
+  box-shadow: 0 0 60px rgba(0,0,0,.12);
+}
+
+/* Desktop: show subtle frame around patient app */
+@media (min-width: 500px) {
+  .patient-frame {
+    min-height: 100vh;
+  }
+}
+
+/* ── Mobile nav show/hide ──────────────────────────── */
+@media (max-width: 700px) {
+  .nav-links-hide   { display: none !important; }
+  .mobile-nav-only  { display: flex !important; }
+  /* Breathe page: full-screen sessions */
+  .hero-grid h1     { font-size: 28px !important; }
+}
+@media (min-width: 701px) {
+  .mobile-nav-only  { display: none !important; }
+}
+
+/* ── Auth page: hide left brand panel on mobile ─────── */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  /* patient shell: remove max-width constraint on very small screens */
+  .patient-shell { background: #f4f6f9 !important; }
+  .patient-frame { box-shadow: none !important; }
+}
+
+/* ── Clinician & Admin: ensure proper scroll on mobile ─ */
+@media (max-width: 768px) {
+  /* Admin sidebar: collapsed on mobile */
+  aside { width: 56px !important; }
+  aside span { display: none !important; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   VW LAYOUT SYSTEM v2 — replaces patient-shell/patient-frame
+   ══════════════════════════════════════════════════════════ */
+
+/* Global font */
+body, button, input, textarea, select {
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+}
+
+/* Shell: full-bleed flex container */
+.vw-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* ── Sidebar: hidden on mobile, visible on desktop ── */
+.vw-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #12273C 0%, #0e1f30 100%);
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  z-index: 20;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  border-inline-start: none;
+}
+[dir="rtl"] .vw-sidebar { right: 0; }
+[dir="ltr"] .vw-sidebar { left: 0; }
+
+/* Sidebar nav item hover */
+.vw-nav-item:hover {
+  background: rgba(255,255,255,.08) !important;
+  color: rgba(255,255,255,.9) !important;
+}
+
+/* ── Main content area ── */
+.vw-main {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: 90px; /* room for bottom nav */
+  overflow-x: hidden;
+}
+
+/* ── Mobile bottom nav container ── */
+.vw-nav-outer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  padding: 8px 14px calc(env(safe-area-inset-bottom, 0px) + 12px);
+  pointer-events: none;
+}
+
+/* Frosted glass pill */
+.vw-nav-pill {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 24px;
+  padding: 5px;
+  gap: 3px;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+  pointer-events: all;
+}
+
+/* ── Desktop overrides ── */
+@media (min-width: 1024px) {
+  .vw-sidebar { display: flex; }
+  [dir="rtl"] .vw-main { margin-right: 260px; }
+  [dir="ltr"] .vw-main { margin-left: 260px; }
+  .vw-main { padding-bottom: 0; }
+  .vw-nav-outer { display: none; }
+}
+
+/* ── Page header: no status-bar padding needed on desktop ── */
+@media (min-width: 1024px) {
+  .page-hero { padding-top: 28px !important; }
+}
